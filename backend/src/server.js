@@ -8,9 +8,7 @@ import { initializeRedis, redisClient } from './config/redis.js';
 import { initializeSocket } from './config/socket-io.js';
 import { initializeKafka } from './config/kafka.js';
 import { startGroupConsumer, startKafkaConsumers } from './services/kafka/kafka-consumer.js';
-// import { initializeRedis } from './config/redis.js';
-// import { initializeSocket } from './config/socket-io.js';
-// import { initializeKafka, initializeConsumer } from './services/kafka/kafka-consumer.js';
+
 
 // Create HTTP server
 const server = http.createServer(app);
@@ -18,16 +16,15 @@ const server = http.createServer(app);
 // Initialize Socket.io on the server
  export const io = new SocketServer(server, {
   cors: {
-    origin: ['http://localhost:2000'], // Array format
+    origin: ['http://localhost:2000'], 
     credentials: true,
   },
 
 });
 
  const peerServer = ExpressPeerServer(server, {
-  path: '/',  // Changed from '/peerjs' to root
-  cors: {
-    origin: '*', // Match your client origin
+  path: '/',  
+    origin: '*', 
   }
 });
 
