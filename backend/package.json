@@ -1,5 +1,5 @@
 {
-  "name": "chat-system",
+  "name": "Chatter-Box",
   "version": "1.0.0",
   "description": "Web-based chatting system",
   "main": "src/server.js",
@@ -10,19 +10,9 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/akshya-backend/chat-system.git"
+    "url": "https://github.com/akshya-backend/Chatter-Box-.git"
   },
-  "keywords": [
-    "chat",
-    "socket",
-    "express",
-    "redis",
-    "kafka",
-    "mongodb",
-    "cloudinary",
-    "google-auth",
-    "peerJs"
-  ],
+  
   "author": "akshya_backend",
   "license": "ISC",
   "dependencies": {
