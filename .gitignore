@@ -1,0 +1,16 @@
+# Ignore Node.js modules
+**/node_modules/
+
+# Ignore environment files
+.env
+backend/.env
+
+# Ignore temporary uploads
+backend/temp-uploads/*
+
+# Ignore logs
+*.log
+
+# Ignore IDE files
+.idea/
+.vscode/

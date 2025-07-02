@@ -1,0 +1,227 @@
+:root {
+    --primary: #6366f1;
+    --primary-hover: #4f46e5;
+    --background: #0f172a;
+    --container: #1e293b;
+    --text: #f8fafc;
+    --success: #10b981;
+    --error: #ef4444;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Inter', system-ui, sans-serif;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: var(--background);
+    transition: background 0.4s ease;
+}
+
+.container {
+    background: var(--container);
+    padding: 2.5rem;
+    border-radius: 1.5rem;
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.3);
+    width: min(90%, 520px);
+    height: min(90% 520px);
+    text-align: center;
+    transition: all 0.4s ease;
+}
+
+/* Smooth Slide-In Transition for Form Sections */
+.form-section {
+    display: none;
+    opacity: 0;
+    transform: translateX(100%); /* Start off-screen to the right */
+    transition: all 0.4s ease; /* Smooth transition for opacity and transform */
+}
+
+.form-section.active {
+    display: block;
+    opacity: 1;
+    transform: translateX(0); /* Slide into view */
+}
+
+.avatar {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    background: #334155;
+    margin: 0 auto 1.5rem;
+    align-items: center;
+    justify-content: center;
+    font-size: 2rem;
+    color: var(--text);
+}
+
+.app-name {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--text);
+    margin-bottom: 0.5rem;
+}
+
+.subtitle {
+    color: #94a3b8;
+    font-size: 0.9rem;
+    margin-bottom: 2rem;
+}
+
+.input-container {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    margin: 2rem 0;
+}
+
+.input-container input {
+    width: 50px;
+    height: 50px;
+    text-align: center;
+    font-size: 1.2rem;
+    background: transparent;
+    border: 2px solid #334155;
+    border-radius: 8px;
+    color: var(--text);
+    transition: all 0.2s ease;
+}
+
+.input-container input:focus {
+    border-color: var(--primary);
+    box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.2);
+    outline: none;
+}
+
+.forgot-pin {
+    margin: 1.5rem 0;
+}
+
+.forgot-pin a {
+    color: var(--primary);
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 500;
+    cursor: pointer;
+    transition: color 0.2s ease;
+}
+
+.forgot-pin a:hover {
+    color: var(--primary-hover);
+}
+
+.success-message {
+    color: var(--success);
+    font-weight: 600;
+    margin-top: 1rem;
+    opacity: 0;
+    transform: translateY(10px);
+    transition: all 0.3s ease;
+}
+
+.success-message.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Theme for OTP Page */
+.otp-theme {
+    --background: #1e1e2e;
+    --container: #2a2a3a;
+    --primary: #ff7eb6;
+    --primary-hover: #ff5c9e;
+}
+
+/* Theme for New PIN Page */
+.new-pin-theme {
+    --background: #1e2e2e;
+    --container: #2a3a3a;
+    --primary: #7effb6;
+    --primary-hover: #5cff9e;
+}
+/* General Button Styling */
+.button-group button {
+    background-color:#278b79;
+    /* Green background */
+    color: white;
+    /* White text */
+    border: none;
+    /* Remove border */
+    border-radius: 5px;
+    /* Rounded corners */
+    padding: 10px 20px;
+    /* Padding for size */
+    font-size: 16px;
+    /* Font size */
+    cursor: pointer;
+    /* Pointer cursor on hover */
+    transition:  background-color 0.3s ease,transform 0.3s ease;
+    /* Smooth hover effect */
+}
+
+/* Hover Effect */
+.button-group button:hover {
+    background-color: #278b79;
+    transform: scaleX(1.05) scaleY(1.1);
+    /* Darker green on hover */
+}
+
+/* Disabled Button Styling */
+.button-group button:disabled {
+    background-color: #cccccc;
+    /* Gray background */
+    color: #666666;
+    /* Darker gray text */
+    cursor: not-allowed;
+    /* Not-allowed cursor */
+}
+
+/* Specific Styling for Verify OTP Button */
+#verifyOTPBtn {
+    width: 100%;
+    /* Full width */
+    margin-top: 15px;
+    /* Add spacing above */
+}
+
+/* Specific Styling for Save PIN Button */
+#saveNewPINBtn {
+    width: 100%;
+    /* Full width */
+    margin-top: 15px;
+    /* Add spacing above */
+}
+ img{
+    border-radius: 50%;
+    height: 100%;
+    width: 100%;
+ }
+ @keyframes fadeInScale {
+     0% {
+         opacity: 0;
+         transform: scale(0.9);
+     }
+
+     100% {
+         opacity: 1;
+         transform: scale(1);
+     }
+ }
+
+ @keyframes fadeOutScale {
+     0% {
+         opacity: 1;
+         transform: scale(1);
+     }
+
+     100% {
+         opacity: 0;
+         transform: scale(0.9);
+     }
+ }

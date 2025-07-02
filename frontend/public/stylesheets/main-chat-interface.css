@@ -1,0 +1,1503 @@
+body {
+    margin: 0;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    background-color: #1e1e2d;
+    color: #ffffff;
+    overflow: hidden;
+}
+
+p {
+    margin-bottom: -1px;
+}
+a{
+    text-decoration: none;
+}
+
+.chat-container {
+    display: flex;
+    height: 100vh;
+}
+
+/* Sidebar styling */
+.sidebar {
+    max-width: 5%;
+    background-color: #2a2f36;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 10px;
+}
+
+.logo-section {
+    padding: 20px 0;
+    text-align: center;
+
+}
+
+.add-friend-btn-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 50px;
+    border-radius: 12px;
+}
+
+.add-friend-btn2 {
+    background-color:#7269ef;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    padding: 12px 24px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    box-shadow: 0
+}
+
+.add-friend-btn2:hover {
+    background-color:#7269ef;
+    box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2);
+    transform: scale(1.05);
+}
+
+.add-friend-btn2:active {
+    background-color: #3e8e41;
+    transform: scale(0.95);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.nav-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.nav-icon {
+    padding: 15px;
+    border-radius: 50%;
+    margin-bottom: 15px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.nav-icon.active,
+.nav-icon:hover {
+    background-color: #4b5261;
+}
+
+.bottom-section {
+    border-top: 1px solid #3a3f47;
+    padding-top: 10px;
+    display: flex;
+    justify-content: center;
+}
+
+.user-profile .avatar {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    text-align: center;
+    align-content: center;
+}
+
+/* Groups section */
+.groups-section {
+    width: 500px;
+    background-color: #2e3442;
+    display: flex;
+    flex-direction: column;
+    padding: 15px;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+.groups-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #3a3f47;
+}
+
+
+
+
+.profile-image-container {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.profile-image {
+    width: 150px;
+    /* Adjust size as needed */
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.uploadingSpin {
+    position: absolute;
+    border: 5px solid transparent;
+    border-top: 7px dotted white;
+    border-radius: 50%;
+    width: 70px;
+    height: 70px;
+    animation: spin 1s cubic-bezier(0.65, 0.05, 0.36, 1) infinite;
+    animation-play-state: running;
+}
+
+.upload-footer-text {
+    position: absolute;
+    bottom: 10px;
+    color: white;
+    font-size: 14px;
+    text-align: center;
+    cursor: pointer;
+    font-weight: bold;
+    background-color: rgba(0, 0, 0, 0.5);
+    /* Optional: semi-transparent background */
+    padding: 5px;
+    border-radius: 5px;
+    border: transparent;
+}
+
+.upload-footer-text:hover {
+    background-color: #2a2f36;
+}
+.side-icon {
+    color:white;
+    /* Gray color (change as needed) */
+}
+.side-icon.active {
+    color:#7269ef;
+}
+.hidden-file-input {
+    display: none;
+}
+
+/* General dropdown menu styling */
+.dropdown-menu {
+    background-color: #3b4252;
+    color: white;
+    min-width: fit-content;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    animation: fadeIn 0.3s ease;
+    font-family: 'Source Code Pro', monospace;;
+}
+
+.fileInput {
+    display: none;
+}
+
+/* Transition effect for menu items */
+.dropdown-item {
+    font-size: 16px;
+    padding: 12px 20px;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    transition: background-color 0.3s, transform 0.2s ease;
+}
+
+.dropdown-item:hover {
+    background-color: #7269ef;
+    transform: scale(1.04);
+    color: white;
+}
+
+.fileIcon {
+    font-size: 20px;
+    margin-right: 10px;
+    transition: color 0.3s ease;
+    color: white;
+    font-family: 'Source Code Pro',monospace;;
+}
+
+
+
+/* Attachment Icon hover effect */
+.bottom-icon {
+    font-size: 28px;
+    color: #d1d5db;
+    cursor: pointer;
+    transition: color 0.3s, transform 0.3s ease;
+}
+
+
+/* Animation for the dropdown menu */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.search-groups {
+    padding: 8px;
+    border: none;
+    border-radius: 5px;
+    background-color: #3a3f47;
+    color: white;
+    width: -webkit-fill-available;
+    margin-right: 10px;
+}
+
+.group-list .group-item {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;}
+
+.group-item:hover {
+background-color: #3a404d;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);}
+
+.group-icon {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background-color: #3b4252;
+    margin-right: 10px;
+    
+}
+
+.nav-icon:hover{
+    color: #7269ef;
+}
+.status-dot {
+        position: absolute;
+        bottom: -1px;
+        right: -2px;
+        width: 18px;
+        height: 18px;
+        border-radius: 50%;
+        border: 3px solid #2e3442;
+}
+
+.profileimg {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 1px solid white;
+}
+
+.innerdiv {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 100%;
+    justify-content: space-between;
+}
+
+.unseen {
+    background-color: rgba(239, 71, 111, .18);
+    color: #ef476f;
+}
+
+.online {
+    background-color: #28a745;
+}
+
+.offline {
+    background-color: #c5100a;
+}
+
+/* Chat area styling */
+.chat-area {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    background-color: #222331;
+    position: relative;
+}
+
+.chat-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px;
+    background-color: #2a2f36;
+    border-bottom: 1px solid #3a3f47;
+}
+
+.profile-container {
+    overflow: hidden;
+    position: relative;
+    max-height: 400px;
+}
+
+.profile-container::-webkit-scrollbar {
+    display: none;
+}
+
+.profile-container {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+.profile-container {
+    overflow-y: scroll;
+}
+
+.chat-user-info {
+    display: flex;
+    align-items: center;
+}
+
+.chat-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+.chat-username {
+    font-size: 1.2em;
+        font-family: 'Source Code Pro', monospace;
+            ;
+}
+
+.chat-controls button {
+    background: none;
+    border: none;
+    color: #bbb;
+    font-size: 20px;
+    margin-left: 10px;
+    cursor: pointer;
+}
+
+.chat-messages {
+    display: flex;
+    flex-grow: 1;
+    padding: 10px;
+    overflow-y: auto;
+    flex-direction: column;
+    max-height: 100%;
+    BACKGROUND-COLOR: #2a2f36;
+}
+
+.message {
+    margin-bottom: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
+    border-radius: 10px;
+    position: relative;
+}
+
+.received {
+    display: flex;
+    flex-direction: column;
+    padding-top: 3px;
+    width: fit-content;
+    background-color: #3a3f47;
+}
+
+.sent {
+    background-color: #0078ff;
+    align-self: flex-end;
+    color: white;
+    float: right;
+    width: fit-content;
+
+
+}
+
+.receiverimg {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+}
+
+.receiverlogo {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    background-color: #4b5261;
+    text-align: center;
+    align-content: center;
+}
+
+.receiverMssge {
+    background-color: #3a3f47;
+    padding-right: 10px;
+    padding-left: 10px;
+    border-radius: 10px;
+    max-width: max-content;
+}
+
+.receive {
+    background-color: #3a3f47;
+    padding-right: 10px;
+    padding-left: 10px;
+    border-radius: 10px;
+    max-width: max-content;
+}
+
+.timestamp {
+    font-size: 0.8em;
+    color: #bbb;
+    display: block;
+    text-align: right;
+}
+
+.chat-input {
+    position: static;
+    display: flex;
+    align-items: center;
+    padding: 5px;
+    background-color: #2a2f36;
+    border-top: 1px solid #3a3f47;
+}
+
+.chat-messages::-webkit-scrollbar {
+    display: none;
+    /* For Chrome, Safari, and Edge */
+}
+
+.chat-input input {
+    flex-grow: 1;
+    padding: 18px;
+    border: none;
+    border-radius: 15px;
+    background-color: #3a3f47;
+    color: white;
+    margin-right: 10px;
+}
+
+.file-button,
+.send-button {
+    background: none;
+    border: none;
+    color: #bbb;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.top-icon {
+    padding: 15px;
+    font-size: larger;
+}
+
+.side-icon {
+    font-size: x-large;
+}
+
+a {
+    text-decoration: none;
+    /* Remove underline */
+    color: inherit;
+    /* Inherit color from the parent element */
+}
+
+.chatProfile {
+    background-color: #3b4252;
+    width: 50px;
+    border-radius: 50%;
+    height: 50px;
+    align-content: center;
+    text-align: center;
+        font-family: 'Source Code Pro', monospace;
+            ;
+}
+
+.top-icon:hover {
+    visibility: visible;
+    opacity: 1;
+    cursor: pointer;
+    color: white;
+    background-color: #4b5261;
+    border-radius: 50%;
+}
+
+.bottom-icon {
+    padding: 15px;
+    font-size: larger;
+    border-radius: 15px;
+    color: white;
+    background-color: #4b5261;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.bottom-icon:hover {
+    padding: 15px;
+    font-size: larger;
+    color: white;
+    background-color:#7269ef;
+    border-radius: 15px;
+}
+
+/* General container styling */
+.chatzone-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 100vh;
+    overflow: hidden;
+    text-align: center;
+    background-color: #2a2f36;
+}
+
+/* Smooth fade-in effect */
+
+/* ChatZone text styling */
+.chatzone-text {
+    font-size: 60px;
+    font-weight: bold;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    background-color: #2a2f36;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+/* Individual letter animation */
+.chatzone-letter {
+    opacity: 0;
+    animation: slideIn 1s forwards;
+    display: inline-block;
+    /* Ensure letters are inline */
+}
+
+/* Delay for each letter to animate in sequence */
+.chatzone-letter:nth-child(1) {
+    animation-delay: 0s;
+}
+
+.chatzone-letter:nth-child(2) {
+    animation-delay: 0.1s;
+}
+
+.chatzone-letter:nth-child(3) {
+    animation-delay: 0.2s;
+}
+
+.chatzone-letter:nth-child(4) {
+    animation-delay: 0.3s;
+}
+
+.chatzone-letter:nth-child(5) {
+    animation-delay: 0.4s;
+}
+
+.chatzone-letter:nth-child(6) {
+    animation-delay: 0.5s;
+}
+
+.chatzone-letter:nth-child(7) {
+    animation-delay: 0.6s;
+}
+
+.chatzone-letter:nth-child(8) {
+    animation-delay: 0.7s;
+}
+
+.chatzone-letter:nth-child(9) {
+    animation-delay: 0.8s;
+}
+
+.chatzone-letter:nth-child(10) {
+    animation-delay: 0.9s;
+}
+
+/* Slide-in animation for the letters */
+@keyframes slideIn {
+    from {
+        transform: translateX(-50px);
+        opacity: 0;
+    }
+
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+/* Tagline styling */
+.chatzone-tagline {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-size: 24px;
+    color: #fff;
+    margin-top: 20px;
+    opacity: 0;
+    animation: fadeIn 1.5s forwards;
+    animation-delay: 1.8s;
+    /* Delay until "ChatterBox" text finishes */
+}
+
+/* Fade-in animation for the tagline */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 1;
+    }
+}
+
+
+.group-search {
+    display: none;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 10px;
+    margin-bottom: 20px;
+    opacity: 0;
+    transform: translateY(-10px);
+    transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+}
+
+.visible {
+    display:flex;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+
+/* profile.css */
+.profile-container {
+    background-color:#5a6268;
+    border-radius: 15px;
+    width: 400px;
+    display: flex;
+    flex-direction: column;
+    max-height: max-content;
+    margin: 0 auto;
+}
+
+.profile-image-container {
+    position: relative;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.profile-image {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    border: 2px solid #ddd;
+    transition: transform 0.3s ease, border-color 0.3s ease;
+}
+
+.upload-icon {
+    position: absolute;
+    bottom: 0;
+    left: 67%;
+    transform: translateX(-50%);
+    background-color: white;
+    border-radius: 50%;
+    padding: 5px;
+    cursor: pointer;
+    border: 2px solid white;
+}
+
+.upload-icon i {
+    font-size: 20px;
+    color: #2e3442;
+}
+
+.hidden-file-input {
+    display: none;
+}
+
+.profile-info-container h3 {
+    margin-bottom: 15px;
+}
+
+.form-label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+/* Base styles for the profile container */
+.profile-container {
+    max-width: 100%;
+    padding: 20px;
+    /* Dark background for modern look */
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+/* Profile image section */
+.profile-image-container {
+    text-align: center;
+    margin-bottom: 17px;
+}
+
+.profile-image {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 3px solid transparent;
+    transition: transform 0.3s ease, border-color 0.3s ease;
+}
+
+.profile-image:hover {
+    transform: scale(1.05);
+        box-shadow: 0 4px 12px #525353;
+}
+
+.hidden-file-input {
+    display: none;
+}
+
+.upload-footer-text {
+    display: block;
+    margin-top: 10px;
+    color: #7269ef;
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.upload-footer-text:hover {
+    color: #7269ef;
+}
+
+/* Profile info section */
+.profile-info-container {
+    margin-top: 20px;
+}
+
+.profile-info-container h3 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    /* Teal color for heading */
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+.form-label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #ffffff;
+    /* White text for labels */
+}
+.form-input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    /* Semi-transparent border */
+    border-radius: 8px;
+    font-size: 14px;
+    background: transparent;
+    color: white;
+    outline: none;
+    transition: border-color 0.3s ease;
+    /* Add transition for smooth hover effect */
+}
+
+.form-input:hover {
+    border-color:#7269ef;
+    /* Corrected hover border color */
+    cursor: pointer;
+}
+
+.form-input:focus {
+    border-color:#0078ff;
+    /* Teal color on focus */
+    box-shadow: 0 4px 12px rgba(0, 188, 212, 0.25);
+}
+
+.form-input::placeholder {
+    color: rgba(255, 255, 255, 0.6);
+    font-style: italic;
+}
+.read-only-field {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.05);
+    color: white;
+}
+
+.read-only-value {
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+/* Select box styling */
+.form-select {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    border-radius: 8px;
+    font-size: 14px;
+    background: transparent;
+    color: white;
+    outline: none;
+    appearance: none;
+    /* Remove default arrow */
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white'%3e%3cpath d='M7 10l5 5 5-5z'/%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+    background-size: 16px;
+    padding-right: 36px;
+    /* Space for custom arrow */
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.form-select:hover {
+    border-color: rgba(255, 255, 255, 0.5);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.form-select:focus {
+    border-color:#7269ef;
+    /* Teal color on focus */
+    box-shadow: 0 4px 12px #7269ef;
+}
+
+/* Button styling */
+.button-group {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+}
+
+.btn {
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.btn-primary {
+    background-color: #007bff;
+    color: #fff;
+}
+
+.btn-primary:hover {
+    /* Teal color on hover */
+    transform: translateY(-2px);
+}
+
+.btn-secondary {
+    background-color: #6c757d;
+    color: #fff;
+}
+
+.btn-secondary:hover {
+    background-color: #5a6268;
+    transform: translateY(-2px);
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+/* Styling for the select box */
+.styled-select {
+    appearance: none;
+    /* Remove default arrow */
+    -webkit-appearance: none;
+    /* For Safari */
+    -moz-appearance: none;
+    /* For Firefox */
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='white'%3e%3cpath d='M7 10l5 5 5-5z'/%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right 12px center;
+    background-size: 16px;
+    padding-right: 36px;
+    /* Space for custom arrow */
+    cursor: pointer;
+}
+
+/* Styling for the dropdown options */
+.styled-select option {
+    background-color: #2a2a3a;
+    /* Dark background for options */
+    color: white;
+    /* White text for options */
+}
+
+/* Hover and focus states */
+.styled-select:hover {
+    border-color:#7269ef;
+    box-shadow:#7269ef
+}
+
+.styled-select:focus {
+    border-color:#0078ff;
+    /* Teal color on focus */
+    box-shadow: 0 4px 12px rgba(0, 188, 212, 0.25);
+}
+.button-group {
+    display: flex;
+    flex-direction: column;
+    margin-top: 30px;
+}
+
+.btn {
+    padding: 12px 25px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    text-align: center;
+}
+
+.btn-save {
+    background-color: #28a745;
+    color: white;
+    margin-bottom: 10px;
+}
+
+.btn-logout { 
+    background-color: #dc3545;
+    color: white;
+}
+
+.contact {
+    color: black;
+    padding-left: 10px;
+}
+
+#modalOverlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    backdrop-filter: blur(10px);
+}
+
+#modalOverlayContainer {
+    background-color: #f9f9f9;
+    border-radius: 15px;
+    width: 450px;
+    padding: 25px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    font-family: 'Arial', sans-serif;
+}
+
+#modalOverlayContainer2 {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+}
+
+@keyframes fadeInScale {
+    0% {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes fadeOutScale {
+    0% {
+        opacity: 1;
+        transform: scale(1);
+    }
+
+    100% {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+}
+#noFrnd{
+    text-align: center;
+    padding: 70px;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-weight: 500;
+    font-size: x-large;
+}/* General Styles */
+
+.settings-container {
+    max-width: 550px;
+    overflow: hidden;
+    height: 100%;
+    display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+}
+
+/* Profile Header */
+.profile-header {
+    padding: 15px;
+    color: #fff;
+    text-align: center;
+    margin-bottom: 50px;
+
+}
+
+.profile-image-container {
+    position: relative;
+    width: 150px;
+    height: 150px;
+    margin: 0 auto 10px;
+}
+
+.profile-image {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+    cursor: pointer;
+    border:none;
+    transition: transform 0.3s, ease  opacity 0.3s ease, border 0.3s ease;
+    background-color:#545a64;
+}
+
+.profile-image:hover {
+    transform: scaleX(1.1);
+    opacity: 0.8;
+}
+
+.hidden-file-input {
+    display: none;
+}
+
+.profile-name {
+    font-size: 22px;
+    font-weight: bold;
+    margin-bottom: 5px;
+    transition: transform 0.3s ease,color 0.3s ease;
+}
+
+
+/* Dropdown Sections */
+
+
+.dropdown-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px;
+    cursor: pointer;
+    background-color: #2a2f36;
+    margin: 15px 15px 10px 15px;
+    transition: transform 0.3s ease;
+    color:white;
+    border-radius:5px;
+}
+
+.dropdown-header:hover {
+    transform: scaleX(1.02);
+    color:#7269ef;
+}
+
+.dropdown-header h3 {
+    margin: 0;
+    font-size: 16px;
+    color: white;
+        transition: transform 0.3s ease;
+}
+
+.dropdown-header span {
+    font-size: 12px;
+    transition: transform 0.3s ease , color 0.3s ease;
+}
+
+.dropdown-header:hover h3 {
+    color: #7269ef;
+    transform: scaleX(1.02);
+}
+/* Dropdown Content (Hidden State) */
+.dropdown-content {
+    max-height: 0;
+    /* Collapsed height */
+    opacity: 0;
+    /* Fully transparent */
+    overflow: hidden;
+    /* Hide overflowing content */
+    transform: scaleY(0);
+    /* Scale down vertically */
+    display: flex;
+    flex-direction: column;
+    padding: 0 40px 0px 35px;
+    transition: max-height 0.5s ease, opacity 0.5s ease, transform 0.5s ease;
+    /* Smooth transitions */
+}
+
+/* Dropdown Content (Visible State) */
+.dropdown-content.show {
+    max-height: 300px;
+    /* Expanded height */
+    opacity: 1;
+    /* Fully visible */
+    transform: scaleY(1);
+    /* Scale up vertically */
+    padding: 0 40px 15px 35px;
+    margin: 15px;
+    background-color: #2a2f36;
+    border-top: 1px solid #4e5c7d;
+}
+.dropdown-section:has(.dropdown-content.show) {
+    background-color: #2a2f36;
+}
+.dropdown-content:hover{
+    cursor: pointer
+    ;
+}
+
+/* Editable Fields */
+.editable-field {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin: 10px 0;
+    transition: transform 0.3s ease, color 0.3s ease;
+}
+.editable-field:hover{
+    cursor: pointer;
+    color: #7269ef;
+    transform: scaleX(1.01);
+}
+.editable-field input {
+    width: 70%;
+    padding: 5px;
+    border: none;
+    border-radius: 5px;
+    font-size: 14px;
+    background-color: transparent;
+    transition: border-color 0.3s ease ;
+    color:white
+}
+
+.editable-field input:disabled {
+    background-color: transparent;
+    border: none;
+    color:white;
+}
+
+.editable-field input:focus {
+    border-color: #007bff;
+    background-color: transparent;
+    color:white;
+    border:none;
+}
+
+.editable-field button {
+    background-color:#7269ef;
+    color: #fff;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: background-color 0.3s ease;
+}
+
+.editable-field button:hover {
+    background-color: #005bb5;
+}
+
+/* Toggle Switch */
+.toggle-switch {
+    position: relative;
+    display: inline-block;
+    width: 40px;
+    height: 20px;
+    margin-left: 10px;
+}
+
+.toggle-switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    transition: 0.4s;
+    border-radius: 20px;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 16px;
+    width: 16px;
+    left: 2px;
+    bottom: 2px;
+    background-color: white;
+    transition: 0.4s;
+    border-radius: 50%;
+}
+
+input:checked+.slider {
+    background-color: #007bff;
+}
+
+input:checked+.slider:before {
+    transform: translateX(20px);
+}
+
+/* Password Input */
+#app-lock-password-container {
+    margin-top: 10px;
+}
+
+#app-lock-password {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 14px;
+    transition: border-color 0.3s ease;
+}
+
+#app-lock-password:focus {
+    border-color: #007bff;
+}
+
+/* Read-Only Fields */
+.read-only-field {
+    margin: 10px 0;
+    font-size: 14px;
+    background: transparent;
+    border:none;
+    color:white;
+    transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.read-only-field:hover {
+    cursor: pointer;
+    color: #7269ef;
+    transform: scaleX(1.02);    }
+
+.read-only-field span {
+    color:white;
+}
+
+/* Logout Button */
+.logout-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+    background-color: #2a2f36;
+    color: #ff4d4d;
+    cursor: pointer;
+    font-size: 15px;
+    border-radius: 10px;
+    margin: 15px 15px 0px 15px;
+    transition: background-color 0.3s ease-in-out, transform 0.2s ease, box-shadow 0.3s ease-in-out, color 0.3s ease;
+}
+
+.logout-button i {
+    margin-right: 5px;
+}
+
+.logout-button:hover {
+    background-color: #f1f1f1;
+}
+.edit-profile-icon{
+        padding: 5px 15px 5px 15px;
+            border-radius: 5px;
+            color: white;
+            transition: color 0.3s ease;
+}
+.edit-profile-icon:hover{
+  color: #7269ef;
+}
+.save-profile-icon {
+    padding: 5px 10px 5px 10px;
+    border-radius: 5px;
+    color: white;
+    transition: color 0.3s ease;
+}
+
+.save-profile-icon:hover {
+    color:green;
+}
+.switch-btn-toggle{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 5px;
+    transition:  background-color 0.3s ease;
+}
+.switch-btn-toggle:hover{
+    cursor: pointer;
+}
+
+/* Hover Effect */
+.logout-btn:hover {
+    background:#ff4d4d;
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.dropdowm-section:focus{
+    border :1px solid gray
+}
+ .copy:hover{
+    background-color: #007bff;
+ }
+
+ .change-app-lock-container{
+    display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 10px;
+        background-color: #2a2f36;
+        color:whitesmoke;
+        cursor: pointer;
+        font-size: 15px;
+        margin: 15px 15px 0px 15px;
+        transition: background-color 0.3s ease-in-out, transform 0.2s ease, box-shadow 0.3s ease-in-out, color 0.3s ease;
+ }
+ .change-app-lock-container:hover {
+     background:#3b4252;
+     color: white;
+     transform: translateY(-2px);
+     box-shadow: 0px 4px 10px rgba(27, 27, 27, 0.2);
+ }
+ .change-app{
+        display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-top: 20px;
+            margin-left: 3px;
+ }
+ /* For the bio textarea specifically */
+.bio-textarea {
+  min-height: 60px; /* Initial height */
+  max-height: 200px; /* Maximum height before scrolling */
+  resize: none; /* Prevent manual resizing */
+  overflow-y: auto; /* Add scroll if content exceeds max height */
+  width: 100%;
+  transition: height 0.2s ease;
+}
+
+/* General field container to prevent overflow issues */
+.editable-field-container {
+  position: relative;
+  overflow: visible;
+}
+
+.field-content {
+  position: relative;
+  overflow: visible;
+}/* For the bio textarea specifically */
+.bio-textarea {
+    min-height: 60px;
+    /* Initial height */
+    max-height: 200px;
+    /* Maximum height before scrolling */
+    resize: none;
+    /* Prevent manual resizing */
+    overflow-y: auto;
+    /* Add scroll if content exceeds max height */
+    width: 100%;
+    transition: height 0.2s ease;
+}
+
+/* General field container to prevent overflow issues */
+.editable-field-container {
+    position: relative;
+    overflow: visible;
+}
+
+.field-content {
+    position: relative;
+    overflow: visible;
+}
+
+.custom-popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+}
+
+.custom-popup-content {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    max-width: 500px;
+    width: 90%;
+    max-height: 80vh;
+    overflow-y: auto;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.custom-popup-info {
+    /* Info style */
+}
+
+.custom-popup-success {
+    /* Success style */
+}
+
+.custom-popup-error {
+    /* Error style */
+}
+
+.btn-close-popup {
+    margin-top: 15px;
+    background: #f0f0f0;
+    border: none;
+    padding: 5px 15px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+.online {
+    background-color: #28a745;
+}
+
+.offline {
+    background-color: #dc3545;
+}

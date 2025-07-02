@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chatterbox</title>
+    <link rel="stylesheet" href="/stylesheets/pin-Page.css">
+   <link rel="icon" href="/assets/images/favicon.ico" type="image/x-icon">
+
+</head>
+<body>
+    <div class="container">
+        <!-- PIN Entry Section -->
+        <div class="form-section active" id="pinEntry">
+            <div class="avatar">
+                <img src="<%=pic%>" alt="User Avatar">
+            </div>
+            <div class="app-name"> Welcome to Chatterbox</div>
+            <div class="subtitle">Enter your access PIN</div>
+            <div class="input-container">
+                <input type="password" class="pin-input" maxlength="1" data-index="1" >
+                <input type="password" class="pin-input" maxlength="1" data-index="2">
+                <input type="password" class="pin-input" maxlength="1" data-index="3">
+                <input type="password" class="pin-input" maxlength="1" data-index="4">
+            </div>
+            <div class="forgot-pin">
+                <a id="forgotPinLink">Forgot PIN?</a>
+            </div>
+        </div>
+
+        <!-- OTP Verification Section -->
+        <div class="form-section" id="otpVerification">
+            <div class="avatar">
+                <img src="/assets/images/security.png" alt="User Avatar">
+            </div>
+            <div class="subtitle">Enter the OTP sent to your email</div>
+            <div class="input-container">
+                <input type="password" class="otp-input" maxlength="1" data-index="1">
+                <input type="password" class="otp-input" maxlength="1" data-index="2">
+                <input type="password" class="otp-input" maxlength="1" data-index="3">
+                <input type="password" class="otp-input" maxlength="1" data-index="4">
+                <input type="password" class="otp-input" maxlength="1" data-index="5">
+                <input type="password" class="otp-input" maxlength="1" data-index="6">
+            </div>
+            <div class="button-group">
+                <button id="verifyOTPBtn">Verify OTP</button>
+            </div>
+        </div>
+
+        <!-- New PIN Section -->
+        <div class="form-section" id="newPinPage">
+            <div class="avatar">
+                <img src="/assets/images/reset-password.png" alt="User Avatar">
+            </div>
+            <div class="subtitle">Set a new PIN</div>
+            <div class="input-container">
+                <input type="password" class="new-pin-input" maxlength="1" data-index="1">
+                <input type="password" class="new-pin-input" maxlength="1" data-index="2">
+                <input type="password" class="new-pin-input" maxlength="1" data-index="3">
+                <input type="password" class="new-pin-input" maxlength="1" data-index="4">
+            </div>
+            <div class="button-group">
+                <button id="saveNewPINBtn">Save PIN</button>
+            </div>
+        </div>
+    </div>
+
+    <script type="module" src="/js/auth/app-pin-handler.js"></script>
+</body>
+</html>

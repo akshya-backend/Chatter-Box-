@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+
+<html lang="en" data-theme="dark">
+    <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>ChatterBox</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/remixicon@4.5.0/fonts/remixicon.css" rel="stylesheet">
+     <link rel="icon" href="/path/to/your/favicon.ico" type="image/x-icon">
+    <script type="module" src="https://cdn.jsdelivr.net/npm/emoji-picker-element@1.9.0/index.js"></script>
+
+
+    <link rel="stylesheet" href="/stylesheets/main-style.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <div class="logo">
+                <span class="logo-text short">
+                       <% 
+                             const parts = user.name.trim().split(' ');
+                              const initials = parts.length === 1 
+                              ? parts[0].substring(0, 2).toUpperCase() 
+                               : (parts[0][0] + parts[1][0]).toUpperCase(); 
+                           %>
+                       <%= initials %>
+                     </span>
+                   <span class="logo-text full"><%= user.name%></span>
+            </div>
+            
+            <div class="nav-section">
+                <div class="nav-item active" id="chats-nav">
+                    <div class="nav-item-content">
+                        <i class="ri-message-3-line nav-icon"></i>
+                        <span class="nav-item-text">Chats</span>
+                    </div>
+                </div>
+                
+                <div class="nav-item" id="friends-nav">
+                    <div class="nav-item-content">
+                        <i class="ri-user-3-line nav-icon"></i>
+                        <span class="nav-item-text">Friends</span>
+                    </div>
+                </div>
+                
+                <div class="nav-item" id="groups-nav">
+                    <div class="nav-item-content">
+                        <i class="ri-group-line nav-icon"></i>
+                        <span class="nav-item-text">Groups</span>
+                    </div>
+                </div>
+                
+                <div class="nav-item" id="settings-nav">
+                    <div class="nav-item-content">
+                        <i class="ri-settings-3-line nav-icon"></i>
+                        <span class="nav-item-text">Settings</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="bottom-section">
+                <div class="theme-toggle" id="theme-toggle">
+                    <div class="nav-item-content">
+                        <i class="nav-icon ri-sun-line" id="theme-icon"></i>
+                        <span class="nav-item-text">Dark Mode</span>
+                    </div>
+                </div>
+                
+                <div class="user-profile" id="user-profile" data-id="<%= user.id %>">
+                    <img id="user-img-tag" src="<%= user.avatar.url %>" alt="User">
+                </div>
+            </div>
+        </div>
+        
+        <!-- Contacts Panel -->
+        <div class="contacts-panel" id="contacts-panel">
+            <div class="contacts-header">
+                <div class="contacts-title" id="contacts-title">Chats</div>
+                <div class="contacts-actions">
+                    <button id="friendIcon" class="contacts-tab" style="margin-left: auto; display: none;"><i class="ri-user-add-line"></i> Add Friend</button>
+                    <button id="groupIcon" class="contacts-tab" style="margin-left: auto; display: none;"><i class="ri-group-line"></i> Create Group</button>
+                </div>
+            </div>
+            
+            <div id="search-btn" class="search-bar">
+                <i class="ri-search-line search-icon"></i>
+                <input type="text" class="search-input" placeholder="Search..." id="contacts-search">
+            </div>
+            
+            <div class="contacts-tabs" id="contacts-tabs" style="display: flex;"><button class="contacts-tab active" data-tab="all">All</button><button class="contacts-tab" data-tab="blocked">Blocked</button></div>
+             
+            <div class="contacts-list" id="contacts-list" style="display: block;">
+                <div class="empty-state">
+                    <div  id="loading-spinner" class="loading-spinner active">
+                   <div class="spinner"></div>
+                     <div class="loading-text">Loading  Recent Chats...</div>
+                   </div>
+                    <!-- <div class="empty-state-icon">\
+                        <i class="ri-message-line"></i>
+                    </div>
+                    <div class="empty-state-title">No chats</div>
+                    <div class="empty-state-description">Start a new conversation</div> -->
+                </div>
+            </div>
+            
+            <!-- Settings content (hidden by default) -->
+            <div class="settings-content" id="settings-content" style="display: none;">
+                <!-- Settings content will be dynamically inserted here -->
+            </div>
+        </div>
+        
+        <!-- Chat Area -->
+        <div id="chat-area" class="chat-area"><div class="chat-welcome-screen">
+       <div class="chat-welcome-screen">
+    <div class="chat-welcome-logo">
+        <div class="logo-animation">CB</div>
+    </div>
+    <div class="chat-welcome-content">
+        <div class="chat-welcome-title">Welcome to ChatterBox</div>
+        <div class="chat-welcome-tagline">Connect, chat, and collaborate seamlessly</div>
+        <div class="chat-welcome-actions">
+            <button class="btn btn-primary" id="start-new-chat">
+                <i class="ri-chat-new-line"></i> Start New Chat
+            </button>
+            <button class="btn btn-secondary" id="create-group-from-welcome">
+                <i class="ri-group-line"></i> Create Group
+            </button>
+        </div>
+    </div>
+    <div class="welcome-decoration">
+        <div class="decoration-circle"></div>
+        <div class="decoration-circle"></div>
+        <div class="decoration-circle"></div>
+
+    </div>
+</div>
+    </div>
+</div>
+    </div>
+
+    <script>
+        const userId = "<%= user.id %>";
+        const name = "<%= user.name %>";
+        const avatar = "<%= user.avatar.url %>" ;
+        sessionStorage.setItem('userInfo', JSON.stringify({ userId, name, avatar }));
+    </script>   
+     <script src="/socket.io/socket.io.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/peerjs@1.5.2/dist/peerjs.min.js"></script>
+    <script type="module" src="/js/app/main.js"></script>
+    
+
+
+</body>
+</html>

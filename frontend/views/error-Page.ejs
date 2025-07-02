@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Error <%= errorCode %></title>
+    <!-- Google Fonts for Inter -->
+    <link rel="stylesheet" href="/stylesheets/error.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="icon" href="/assets/images/favicon.ico" type="image/x-icon">
+
+</head>
+<body>
+    <div class="error-container">
+        <h1><%= errorCode %></h1>
+        <h2><%= errorMessage %></h2>
+        <p><%= errorDescription %></p>
+        <a href="/" class="home-link">Go Back Home</a>
+    </div>
+    <script>
+    // Remove session storage items
+    sessionStorage.removeItem("isNotified");
+    sessionStorage.removeItem("currentChat");
+    sessionStorage.removeItem("activePanel");
+    sessionStorage.removeItem("userInfo");
+
+    // Delete IndexedDB key
+    const deleteKeyFromIndexedDB = () => {
+        const request = indexedDB.open("E2EE_Chat");
+
+        request.onsuccess = function (event) {
+            const db = event.target.result;
+
+            // Check if 'keys' store exists (defensive check)
+            if (!db.objectStoreNames.contains("keys")) {
+                console.warn("Object store 'keys' does not exist.");
+                return;
+            }
+
+            const transaction = db.transaction("keys", "readwrite");
+            const store = transaction.objectStore("keys");
+
+            const deleteRequest = store.delete("publicKey");
+            const deleteRequest2 = store.delete("privateKey");
+            // change if your key is different
+
+            deleteRequest.onsuccess = function () {
+                console.log("✅ IndexedDB: 'userKeys' deleted");
+            };
+
+            deleteRequest.onerror = function (event) {
+                console.error("❌ Error deleting key from IndexedDB:", event.target.error);
+            };
+        };
+
+        request.onerror = function (event) {
+            console.error("❌ Error opening IndexedDB:", event.target.errorCode);
+        };
+    };
+
+    // Run deletion after slight delay to ensure DB is accessible
+    window.addEventListener("load", () => {
+        setTimeout(deleteKeyFromIndexedDB, 100); // small delay for safety
+    });
+</script>
+
+</body>
+</html>
